@@ -50,5 +50,4 @@ describe 'GreekStringUtils' do
     a = 'ή'
     upperfix(a).should eql('Ή')
   end
-
 end

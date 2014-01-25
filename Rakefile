@@ -1,23 +1,12 @@
-#!/usr/bin/env rake
-begin
-  require 'bundler/setup'
-rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
-end
-begin
-  require 'rdoc/task'
-rescue LoadError
-  require 'rdoc/rdoc'
-  require 'rake/rdoctask'
-  RDoc::Task = Rake::RDocTask
-end
+require 'bundler/gem_tasks'
+require 'rake/extensiontask'
 
-RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'GreekStringUtils'
-  rdoc.options << '--line-numbers'
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+gem_name = 'greek_string_utils'
+spec = Gem::Specification.load("#{gem_name}.gemspec")
 
-Bundler::GemHelper.install_tasks
+Rake::ExtensionTask.new do |ext|
+  ext.name = 'upperfix'
+  ext.ext_dir = "ext/#{gem_name}"
+  ext.lib_dir = "lib/#{gem_name}"
+  ext.gem_spec = spec
+end

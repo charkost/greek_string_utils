@@ -1,7 +1,8 @@
 # coding: utf-8
+require 'greek_string_utils/upperfix'
 
 module GreekStringUtils
-  def upperfix(string)
+  def upperfix_rb(string)
     string.to_s.chars.map do |char|
       case char
       # Downcase characters

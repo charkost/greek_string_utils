@@ -18,5 +18,16 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 
+  s.extensions << "ext/#{s.name}/extconf.rb"
+
   s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rake-compiler'
+
+  if RUBY_ENGINE == "ruby"
+    if RUBY_VERSION > "1.9.3"
+      s.add_development_dependency "pry-byebug", "~> 1.2.1"
+    else
+      s.add_development_dependency "pry", "~> 0.9.12.4"
+    end
+  end
 end
