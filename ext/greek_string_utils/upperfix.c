@@ -1,8 +1,8 @@
 #include <ruby.h>
 
 #define IS_GREEK(c) \
-((unsigned char)*c == 206 || (unsigned char)*c == 207) && \
-upperfix_map[((unsigned char)*c) - 206][(unsigned char)*(c + 1)][0]
+((unsigned char)*(c) == 206 || (unsigned char)*(c) == 207) && \
+upperfix_map[((unsigned char)*(c)) - 206][(unsigned char)*(c + 1)][0]
 
 VALUE upperfix(VALUE self, VALUE str);
 void init_upperfix_map();
